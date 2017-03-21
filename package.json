@@ -1,0 +1,9 @@
+{
+  "name": "xianxia",
+  "version": "1.0.0",
+  "description": "download xianxia novels",
+  "main": "index.js",
+  "repository": "https://github.com/993318936/xianxia.git",
+  "author": "993318936@qq.com",
+  "license": "MIT"
+}
