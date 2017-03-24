@@ -5,25 +5,21 @@ const path = require('path'),
     webpack = require('webpack'),
     ManifestPlugin = require('webpack-manifest-plugin'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
-console.log(__dirname);
+    fs = require("fs"),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function (env) {
     var config = {
         context: path.join(__dirname, "./resources/assets/front/"),
         entry: {
-            vendor: ["vue", "vue-router", "axios", "vuex"],
+            vendor: ["vue", "vue-router", "axios", "vuex","element-ui"],
             main: "./js/main"
         },
         output: {
-            path: path.join(__dirname, "../public/build/webpack"),
+            path: path.join(__dirname, "/public/build/webpack"),
             filename: "main.[chunkhash:8].js",
-            publicPath: "./../../build/webpack/",
+            publicPath: "./../webpack/",
             chunkFilename: "[name].[chunkhash:8].js"
-        },
-        devServer: {
-            contentBase: path.join(__dirname, "/public/build/webpack"),
-            compress: true,
-            port: 9000
         },
         target: 'web',
         resolve: {
@@ -40,7 +36,7 @@ module.exports = function (env) {
                 minChunks: Infinity
             }),
             new CleanWebpackPlugin(["webpack"], {
-                root: path.join(__dirname, "../public/build"),
+                root: path.join(__dirname, "/public/build"),
                 verbose: false
             }),
             new ExtractTextPlugin({
@@ -49,7 +45,11 @@ module.exports = function (env) {
             }),
             new ManifestPlugin({
                 fileName: "./../rev-manifest.json",
-                basePath: "webpack/"
+                basePath: "/public/build/webpack/"
+            }),
+            new HtmlWebpackPlugin({
+                title: "Xianxia House",
+                template:path.join(__dirname,"/resources/views/front/","index.html")
             })
         ],
         module: {
@@ -65,6 +65,18 @@ module.exports = function (env) {
                             })
                         }
                     }
+                },
+                {
+                   test:/\.html$/,
+                    loader:'html-loader'
+                },
+                {
+                    test: /\.css$/,
+                    loader: 'style-loader!css-loader'
+                },
+                {
+                    test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+                    loader: 'file-loader?name=[hash:8].[name].[ext]'
                 },
                 {
                     test: /\.js$/,

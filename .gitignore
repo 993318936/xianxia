@@ -7,5 +7,6 @@
 *.iml
 node_modules
 /public/build
+.DS_Store
 out
 gen

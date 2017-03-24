@@ -1,3 +1,4 @@
+@import "common.less";
 html, body {
   margin: 0;
   padding: 0;
@@ -12,6 +13,9 @@ html, body, .container, #app {
   width: 100%;
 }
 
+body{
+  font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -30,4 +34,25 @@ ul {
 
 a:hover, a:visited, a:link, a:active {
     color:inherit;
+}
+
+.index{
+  .logo{
+    margin:89px 0 0 0;
+    height:200px;
+    background:url("./../images/logo.png") center no-repeat;
+    background-size:contain;
+  }
+  .search{
+    cursor: text;
+    margin:0 auto;
+    font-size: 18px;
+    height: 36px;
+    line-height: 36px;
+    max-width: 672px;
+    position: relative;
+  }
+  .to-books{
+    margin:15px 0;
+  }
 }
